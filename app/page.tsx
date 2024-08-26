@@ -11,7 +11,7 @@ export default function Home() {
       <Landing/>
       <FeaturesSection/>
       <FAQSection/>
-      <Footer/>
+
     </main>
   );
 }

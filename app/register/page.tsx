@@ -41,14 +41,14 @@ export const Login = () => {
 
 
   return (
-    <div className='flex flex-col justify-center  h-screen rounded-ee-full bg-pink-50 rounded-ss-full '>
+    <div className='flex flex-col justify-center  bg-black h-screen'>
         <div className='flex justify-center'>
-            <div className='shadow rounded-xl rounded-tr-none px-16 py-10 bg-white'>
+            <div className='shadow rounded-xl rounded-tr-none px-16 py-10 login-block'>
                 <h1 className='text-center text-2xl mb-4'>Register</h1>
                     <div className='flex flex-col gap-3'>
                         <input 
                             type="text" 
-                            className='p-2 border border-gray-300 rounded-lg outline-none' 
+                            className='p-2 border border-gray-300 rounded-lg outline-none text-slate-500' 
                             placeholder='Name'
                             onChange={(e) => {
                                 e.preventDefault();
@@ -57,7 +57,7 @@ export const Login = () => {
                         />
                         <input 
                             type="text" 
-                            className='p-2 border border-gray-300 rounded-lg outline-none' 
+                            className='p-2 border border-gray-300 rounded-lg outline-none text-slate-500' 
                             placeholder='Email' 
                             onChange={(e) => {
                                 e.preventDefault();
@@ -75,12 +75,12 @@ export const Login = () => {
                         />
                     </div>
                     <div className='flex justify-center items-center mt-6'>
-                        <button className='bg-slate-800 text-white rounded-lg px-4 py-2 w-full font-semibold text-lg  ' type='button' onClick={submitData} >Submit</button>
+                        <button className='login-block text-white rounded-lg px-4 py-2 w-full font-semibold text-lg  ' type='button' onClick={submitData} >Submit</button>
                     </div>
-                <p className='my-4 text-slate-600 '>Already have an Account? <Link href={'/login'} className='text-blue-700 hover:underline '>Login</Link></p> 
+                <p className='my-4 '>Already have an Account? <Link href={'/login'} className='font-bold hover:underline '>Login</Link></p> 
 
                 <hr /> 
-                <button className='bg-slate-800 text-white rounded-lg px-4 py-2 mt-4 mx-auto w-full flex items-center gap-2 justify-center font-semibold text-lg ' onClick={() => signIn('google')}>Login with <BsGoogle/></button>
+                <button className='login-block text-white rounded-lg px-4 py-2 mt-4 mx-auto w-full flex items-center gap-2 justify-center font-semibold text-lg ' onClick={() => signIn('google')}>Login with <BsGoogle/></button>
              
             </div>
         </div>

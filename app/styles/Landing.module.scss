@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/fonts/Gemsuck.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.customFont {
+    font-family: 'CustomFont', sans-serif;
+}
