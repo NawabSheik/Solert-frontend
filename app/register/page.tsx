@@ -66,7 +66,7 @@ export const Login = () => {
                         />
                         <input 
                             type="password" 
-                            className='p-2 border border-gray-3x00 rounded-lg outline-none' 
+                            className='p-2 border text-gray-600 border-gray-3x00 rounded-lg outline-none' 
                             placeholder='Password'
                             onChange={(e) => {
                                 e.preventDefault();
