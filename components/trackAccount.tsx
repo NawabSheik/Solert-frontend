@@ -1,25 +1,55 @@
 'use client'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const TrackAccount = () => {
   const [address, setAddress] = useState<string>('')
   const [amount, setAmount] = useState<number>()
-  const [account, setAccount] = useState<string[]>([])
+  const [account, setAccount] = useState<string[]>([]);
+  const [allTrackAddress, setAllTrackAddress] = useState([]);
+
+  // 
+  const [updatedAmount, setUpdatedAmount] = useState<number>()
+
+  const idoftrackAddress = () => {}
+
   const {data} = useSession();
   console.log(data)
 
   const handleChange =  (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-   
     setAddress(e.target.value)
     console.log("accoutn", address)
   }
 
+  // get all the account's user is tracking
+  useEffect(() => {
+    const data = async () => {
+      const response = await axios.get('http://localhost:3001/api/v1/accounts/trackAddress?userId=8')
+      setAllTrackAddress(response.data.data)
+    }
+    data();
+    
+  },[])
+  console.log("get data from backend",allTrackAddress)
+
+
+  // update Amount
+
+  const updateAmount = async() => {
+    const response = await axios.patch('http://localhost:3001/api/v1/accounts/trackAddress', {id:idoftrackAddress, updatedAmount})
+  }
+
+// delete trackAddress
+
+const deleteTrackAddress = async(id:number) => {
+  const response = await axios.delete('http://localhost:3001/api/v1/accounts/trackAddress', {data: id})
+}
+
   const addAccount = async() => {
     try {
-      const response = await axios.post(`http://localhost:3001/api/v1/accounts/trackAddress?userId=2`, {address, amount})
+      const response = await axios.post(`http://localhost:3001/api/v1/accounts/trackAddress?userId=8`, {address, amount})
       setAmount(0)
       setAddress('')
     } catch (error) {
@@ -35,7 +65,10 @@ export const TrackAccount = () => {
           type="text" 
           className=' w-3/4 outline-none p-2 border border-slate-600 rounded-lg text-slate-800' 
           placeholder='Enter the Address to Track' 
-          onChange={handleChange} 
+          onChange={handleChange}
+          // export const getTrackAccount = () => {
+            
+          // } 
           value={address}
         />
         <input 
@@ -60,6 +93,3 @@ export const TrackAccount = () => {
   )
 }
 
-export const getTrackAccount = () => {
-  
-}
