@@ -29,7 +29,9 @@ export const Footer = () => {
                 <div className='flex gap-16 mb-3'>
                     <div>
                         <h3 className='text-xl font-semibold mb-4' >Products</h3>
+                        {/* <Link href="/trackAccount">
                         <p>Dcex Activity</p>
+                        </Link> */}
                     </div>
                     <div>
                         <h3 className='text-xl font-semibold mb-4'>Company</h3>
