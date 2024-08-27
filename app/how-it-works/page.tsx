@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 import authOptions from '@/lib/authOption'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { TrackAccount } from '@/components/trackAccount'
+// import { TrackAccount } from '@/components/trackAccount'
 
 const whaleAlert = () => {
 
@@ -19,7 +19,7 @@ const whaleAlert = () => {
     <div className=''>
       <div className='max-w-screen-lg mx-auto mt-10'>
         <h1 className='text-center text-4xl font-bold my-6 text-purple-800'>Add the address you want to Track</h1>
-        <TrackAccount/>
+        {/* <TrackAccount/> */}
       </div>
     </div>
   )
