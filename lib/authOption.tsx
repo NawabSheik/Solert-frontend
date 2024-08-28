@@ -1,71 +1,73 @@
 import axios from "axios";
 import { Session } from "inspector";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from 'next-auth/providers/google'
 import { signIn, signOut } from "next-auth/react";
-import { pages } from "next/dist/build/templates/app-page";
 
 
 const authOptions = {
     providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-        }),
         CredentialsProvider({
             name: "credentials",
             credentials: {
                 username: { label: "Email", type: "text", placeholder: "xyz@gmail.com" },
-                password: { label: "Password", type: "password", placeholder:"********" }
+                password: { label: "Password", type: "password", placeholder: "********" }
             },
-            async authorize(credentials:any, req:any):Promise<any> {
-                const email = credentials.email;
-                const password = credentials.password;
+            async authorize(credentials: any, req: any): Promise<any> {
+                const { email, password } = credentials;
 
                 console.log("here we go", email, password)
 
-                if(!email || !password) {
-                    return Response.json({
-                        msg: "All fields are required"
-                    })
+                if (!email || !password) {
+                    throw new Error("All fields are required");
                 }
 
-                console.log("heelo1")
+                try {
+                    const response = await axios.post('http://localhost:3001/api/v1/users/login', { email, password })
+                    const user = response.data;
 
-                const user = axios.post('http://localhost:3001/api/v1/users/login', {email, password})
-                console.log("heelo2")
+                    if (!user) {
+                        throw new Error("Invalid credentials");
+                    }
 
-                if(!user) {
-                    return null
+                    return user;
+                } catch (error) {
+                    throw new Error("Authentication failed");
                 }
-                console.log("heelo3")
-
-                return user;
-                console.log("heelo4")
             }
         })
     ],
+
+    callbacks: {
+        async jwt({ token, user }) {
+            console.log("morer raam", token, user);  // Check values of token and user
+            if (user) {
+                token.id = user.id;
+                console.log("aflajld;fjaoe", token.id);
+                token.name = user.name; 
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id;
+                console.log("aflajld;fjaoe2", token.id);
+                session.user.name = token.name; 
+            }
+            return session;
+        }
+    },
+
+    secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/login',
         signOut: '/',
         Error: '/'
     },
     session: {
-        jwt:true,
-    },
-    callbacks: {
-        async jwt({ token, user }) {
-          if (user) {
-            token.id = user.id;
-          }
-          return token;
-        },
-        async session({ session, token }) {
-          session.user.id = token.id;
-          return session;
-        }
+        jwt: true
     }
 
 }
+
 
 export default authOptions;
