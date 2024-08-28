@@ -10,7 +10,6 @@ export const Appbar = () => {
 
 
 
-=======
   const { data: session } = useSession(); // Get session data
   const user = session?.user; // Access user information from the session
 
@@ -44,9 +43,6 @@ export const Appbar = () => {
 
                 {/* <li><Link href={'/whaleAlert'}>Whale Dcex</Link></li> */}
                 {/* <li><Link href={'/'}>About Us</Link></li> */}
-              
-                <li><Link href={'/register'}>SignUp</Link></li>
-
                 <li>|</li>
                 <li><Link href={'/login'}>Login</Link></li>
             </ul>

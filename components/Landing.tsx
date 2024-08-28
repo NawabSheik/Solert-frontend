@@ -10,7 +10,11 @@ export const Landing = () => {
 
   const [isUser, setIsUser] = useState(false);
 
+ 
+  
+
   const { data: session } = useSession()
+  const user = session?.user; // Access user information from the session
   const name = session?.user?.name
   const userId = session?.user?.userId
 
