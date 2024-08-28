@@ -10,8 +10,28 @@
     height:10vh;
 }
 
+.centered-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .intro-head{
     line-height: 3.5rem;
+}
+
+
+
+
+@media(max-width:768px){
+    .intro-head{
+        display: flex;
+        padding:2%;
+    }
+
+    .intro-description{
+        font-size:1rem;
+    }
 }
 
 @media(max-width:768px){
@@ -81,3 +101,19 @@
         width:90%;
     }
 }
+
+.working-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:3%;
+    
+}
+
+.accordion-box{
+    width:80%;
+   
+}
+
+
+
