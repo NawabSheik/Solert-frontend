@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Session } from "inspector";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn, signOut } from "next-auth/react";
 
@@ -9,13 +8,11 @@ const authOptions = {
         CredentialsProvider({
             name: "credentials",
             credentials: {
-                username: { label: "Email", type: "text", placeholder: "xyz@gmail.com" },
-                password: { label: "Password", type: "password", placeholder: "********" }
+                username: { label: "Email", type: "text"},
+                password: { label: "Password", type: "password"}
             },
             async authorize(credentials: any, req: any): Promise<any> {
                 const { email, password } = credentials;
-
-                console.log("here we go", email, password)
 
                 if (!email || !password) {
                     throw new Error("All fields are required");
@@ -39,19 +36,16 @@ const authOptions = {
 
     callbacks: {
         async jwt({ token, user }) {
-            console.log("morer raam", token, user);  // Check values of token and user
             if (user) {
-                token.id = user.id;
-                console.log("aflajld;fjaoe", token.id);
-                token.name = user.name; 
+                token.id = user.userId;
+                token.name = user.userName; 
             }
             return token;
         },
         async session({ session, token }) {
             if (session.user) {
-                session.user.id = token.id;
-                console.log("aflajld;fjaoe2", token.id);
-                session.user.name = token.name; 
+                session.user.userId = token.id;
+                session.user.userName = token.name; 
             }
             return session;
         }
@@ -68,6 +62,4 @@ const authOptions = {
     }
 
 }
-
-
 export default authOptions;

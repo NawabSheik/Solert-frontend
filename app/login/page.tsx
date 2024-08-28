@@ -16,14 +16,12 @@ export const Login = () => {
     const [isUser, setIsUser] = useState(false)
     const router = useRouter()
 
-    console.log(data)
-
 
     useEffect(() => {
         if (data?.user) {
             setIsUser(true);
         }
-        console.log(isUser)
+        console.log(isUser, "is user")
     }, [data?.user])
 
 
@@ -33,10 +31,9 @@ export const Login = () => {
 
     const submitData = async () => {
         try {
-            //   const response = await axios.post('http://localhost:3001/api/v1/users/login', {email, password})
             const response = await signIn("credentials", { email, password })
 
-            console.log(response)
+            // console.log(response)
         } catch (error) {
             console.log("error is this", error)
             setShowAlert(true);  // Show the alert

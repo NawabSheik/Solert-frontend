@@ -5,17 +5,11 @@ import { getServerSession } from 'next-auth'
 import authOptions from '@/lib/authOption'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-// import { TrackAccount } from '@/components/trackAccount'
 import styles from '@/app/styles/Landing.module.scss';
 import {Accordion, AccordionItem} from "@nextui-org/react";
 
 const page = () => {
-  const defaultContent =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
-  return (
-    
-
+ return (
     <div className='w-full text-white landing-page h-screen'>
         <div className='max-w-screen-lg mx-auto text-center pt-20 '>
         <h1 className={`text-5xl leading-normal font-bold intro-head ${styles.customFont}`}>

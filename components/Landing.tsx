@@ -7,9 +7,21 @@ import styles from '@/app/styles/Landing.module.scss';
 
 
 export const Landing = () => {
-  
-  const { data: session } = useSession(); // Get session data
-  const user = session?.user; // Access user information from the session
+
+  const [isUser, setIsUser] = useState(false);
+
+  const { data: session } = useSession()
+  const name = session?.user?.name
+  const userId = session?.user?.userId
+
+  useEffect(() => {
+    if (!name || !userId) {
+      setIsUser(false);
+    } else {
+      setIsUser(true)
+    }
+  }, [name, userId])
+
 
   return (
     <div className='w-full text-white landing-page h-screen centered-div'>
@@ -36,6 +48,7 @@ export const Landing = () => {
             
             </div>
         </div>
+
 
   )
 }

@@ -1,6 +1,7 @@
 'use client';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export const TrackAccount = () => {
@@ -11,14 +12,16 @@ export const TrackAccount = () => {
   const [updatedAmounts, setUpdatedAmounts] = useState<{ [key: number]: number }>({});
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { data: token } = useSession();
-  const { data: session } = useSession();
-  // const {user: }
-  // const userId = session?.user?.id;
 
-  console.log("login data", session)
-  console.log("token", token)
-  const userId = 8;
+  const { data: session } = useSession()
+  const name = session?.user?.name
+  const userId = session?.user?.userId
+  const router = useRouter()
+
+  if (!name || !userId) {
+    router.push('/login')
+  }
+
 
   const fetchData = async () => {
     setLoading(true)
@@ -37,7 +40,7 @@ export const TrackAccount = () => {
     if (userId) {
       fetchData();
     }
-  }, [userId]); // This will run when the component mounts or when userId changes
+  }, [userId]);
 
 
   const updateAmount = async (id: number) => {
@@ -103,7 +106,7 @@ export const TrackAccount = () => {
         <button onClick={addAccount} className='bg-black text-white py-2 px-4 rounded-lg w-1/5 active:text-xl'>Add Account</button>
       </div>
 
-      <div className='mt-8 h-[50vh]  p-4 shadow-xl'>
+      <div className='mt-8 h-[50vh]  p-4 shadow-xl  overflow-y-scroll'>
         {loading ? (<p className='text-center mt-12'>Loading...</p>) : (
           <ul>
             {allTrackAddress.length > 0 ? (

@@ -14,8 +14,10 @@ export const Login = () => {
     const [password, setPassword] = useState<string>('')
     const [showAlert, setShowAlert] = useState(false);
     const { data } = useSession();
+    console.log(data, "is data")
     const [isUser, setIsUser] = useState(false)
     const router = useRouter()
+
 
     useEffect(() => {
         if (data?.user) {
