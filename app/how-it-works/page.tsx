@@ -15,17 +15,12 @@ const page = () => {
 
   return (
     
-      <div className='max-w-screen-lg mx-auto mt-10'>
-        <h1 className='text-center text-4xl font-bold my-6 text-purple-800'>Add the address you want to Track</h1>
-        {/* <TrackAccount/> */}
-     
+
     <div className='w-full text-white landing-page h-screen'>
         <div className='max-w-screen-lg mx-auto text-center pt-20 '>
         <h1 className={`text-5xl leading-normal font-bold intro-head ${styles.customFont}`}>
           How The Solert Really Works
         </h1>
-            <p className='text-xl px-16 font-semibold'>Get real-time notifications for large transactions on the Solana blockchain or for a specified solana address or a group of specified solana address.</p>
-          
         </div>
 
        

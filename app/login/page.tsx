@@ -5,11 +5,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
+import Alert from '@mui/material/Alert';  
 
 export const Login = () => {
     const [email, setEmail] = useState<String>('')
     const [password, setPassword] = useState<String>('')
-    const { data } = useSession()
+    const { data } = useSession();
+    const [showAlert, setShowAlert] = useState(false);
 
     const [isUser, setIsUser] = useState(false)
     const router = useRouter()
@@ -37,6 +39,10 @@ export const Login = () => {
             console.log(response)
         } catch (error) {
             console.log("error is this", error)
+            setShowAlert(true);  // Show the alert
+            setTimeout(() => {
+                setShowAlert(false);  // Hide the alert after 4 seconds
+            }, 4000);
         }
     }
     return (
@@ -44,6 +50,14 @@ export const Login = () => {
             <div className='flex justify-center  '>
                 <div className='shadow rounded-xl rounded-tr-none px-16 py-10 bg-white login-block  '>
                     <h1 className='text-center text-2xl mb-4'>Log In</h1>
+
+                    
+                    {showAlert && (
+                        <Alert severity="warning" className='mt-10 mb-10' onClose={() => setShowAlert(false)}>
+                            User doesn't exist
+                        </Alert>
+                    )}  
+
                     <div className='flex flex-col gap-3'>
                         <input
                             type="text"
