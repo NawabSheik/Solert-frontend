@@ -10,6 +10,10 @@ const features: Feature[] = [
   { icon: '🔍', title: 'Real-Time Monitoring', description: 'Monitor large transactions in real-time on Solana.' },
   { icon: '⚙️', title: 'Custom Alerts', description: 'Set transaction thresholds and track specific accounts.' },
   { icon: '🔒', title: 'Secure & Reliable', description: 'Your data and alerts are safe with our secure platform.' },
+  // { icon: '🔍', title: 'Transaction Analysis', description: ' Gain a deeper understanding, helping you to assess risks.' },
+  // { icon: '⚙️', title: 'Automated Reporting', description: 'Save time with automated insights, keeping you informed.' },
+  // { icon: '🔒', title: 'Seamless Integration', description: 'Enhance your existing systems with powerful monitoring.' },
+
 ];
 
 const FeaturesSection: React.FC = () => {

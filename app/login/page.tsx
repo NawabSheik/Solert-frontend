@@ -71,7 +71,9 @@ export const Login = () => {
                     <p className='my-4 text-200  '>Don't have an Account? <Link href={'/register'} className='font-bold hover:underline'>Register</Link></p>
 
 
+
                 </div>
+
             </div>
         </div>
     )
