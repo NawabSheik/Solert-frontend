@@ -11,10 +11,10 @@ export const Login = () => {
     const [email, setEmail] = useState<String>('')
     const [password, setPassword] = useState<String>('')
     const { data } = useSession();
+    console.log(data, "is data")
     const [isUser, setIsUser] = useState(false)
     const router = useRouter()
-
-    console.log(data)
+    const { data: session } = useSession();
 
 
     useEffect(() => {

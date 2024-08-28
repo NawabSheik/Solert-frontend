@@ -8,9 +8,9 @@ import { signOut, useSession } from 'next-auth/react';
 
 export const Appbar = () => {
 
-  const { data: session } = useSession(); // Get session data
-  const user = session?.user; // Access user information from the session
-  console.log(" more thime ", session);
+  const { data: session } = useSession();
+  const user = session?.user;
+
 
 
   return (
@@ -26,10 +26,7 @@ export const Appbar = () => {
 
           {user ? (
             <ul className='flex gap-8'>
-              <li className='nav-link'>Welcome</li>
-              {/* <li><Link href={'/whaleAlert'}>Whale Dcex</Link></li> */}
-              {/* <li><Link href={'/'}>About Us</Link></li> */}
-              {/* <li><Link href={'/'}>How it Works</Link></li> */}
+              <li className='nav-link capitalize'>{user.name}</li>
               <li>|</li>
               <li className='nav-link'>
                 <button onClick={() => signOut()}>Logout</button>
@@ -39,9 +36,6 @@ export const Appbar = () => {
             : (
               <ul className='flex gap-8'>
                 <li className='nav-link'><Link href={'/register'}>SignUp</Link></li>
-                {/* <li><Link href={'/whaleAlert'}>Whale Dcex</Link></li> */}
-                {/* <li><Link href={'/'}>About Us</Link></li> */}
-                {/* <li><Link href={'/'}>How it Works</Link></li> */}
                 <li>|</li>
                 <li className='nav-link'><Link href={'/login'}>Login</Link></li>
               </ul>
