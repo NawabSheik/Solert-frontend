@@ -69,9 +69,8 @@ export const Login = () => {
                     </div>
                 <p className='my-4 text-200  '>Don't have an Account? <Link href={'/register'} className='font-bold hover:underline'>Register</Link></p> 
 
-                <hr /> 
-                <button className='login-block text-white rounded-lg px-4 py-2 mt-4 mx-auto w-full flex items-center gap-2 justify-center font-semibold text-lg ' onClick={() => signIn('google')}>Login with <BsGoogle/></button>
-             
+               
+            
             </div>
         </div>
     </div>
