@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth'
 import authOptions from '@/lib/authOption'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-// import { TrackAccount } from '@/components/trackAccount'
 
 const whaleAlert = () => {
 

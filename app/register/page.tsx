@@ -14,7 +14,6 @@ export const Login = () => {
     console.log(data, "is data")
     const [isUser, setIsUser] = useState(false)
     const router = useRouter()
-    const { data: session } = useSession();
 
 
     useEffect(() => {
