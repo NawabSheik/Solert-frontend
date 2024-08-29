@@ -16,15 +16,15 @@ export const Landing = () => {
   const { data: session } = useSession()
   const user = session?.user; // Access user information from the session
   const name = session?.user?.name
- 
+  const userId = session?.user?.userId
 
   useEffect(() => {
-    if (!name) {
+    if (!name || !userId) {
       setIsUser(false);
     } else {
       setIsUser(true)
     }
-  }, [name])
+  }, [name, userId])
 
 
   return (

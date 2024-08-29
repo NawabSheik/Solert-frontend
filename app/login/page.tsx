@@ -7,14 +7,15 @@ import React, { useEffect, useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
 import Alert from '@mui/material/Alert';  
 
-const LoginPage: React.FC = () => {
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
+const Login : React.FC = () =>  {
+    const [email, setEmail] = useState<String>('')
+    const [password, setPassword] = useState<String>('')
     const { data } = useSession();
     const [showAlert, setShowAlert] = useState(false);
 
     const [isUser, setIsUser] = useState(false)
     const router = useRouter()
+
 
     useEffect(() => {
         if (data?.user) {
@@ -23,6 +24,7 @@ const LoginPage: React.FC = () => {
         console.log(isUser, "is user")
     }, [data?.user])
 
+
     if (isUser) {
         router.push('/')
     }
@@ -30,7 +32,8 @@ const LoginPage: React.FC = () => {
     const submitData = async () => {
         try {
             const response = await signIn("credentials", { email, password })
-            // console.log(response)
+
+            console.log(response)
         } catch (error) {
             console.log("error is this", error)
             setShowAlert(true);  // Show the alert
@@ -39,18 +42,18 @@ const LoginPage: React.FC = () => {
             }, 4000);
         }
     }
-
     return (
-        <div className='flex flex-col justify-center h-screen bg-black'>
-            <div className='flex justify-center'>
-                <div className='shadow rounded-xl rounded-tr-none px-16 py-10 bg-white login-block'>
+        <div className='flex flex-col justify-center  h-screen  bg-black '>
+            <div className='flex justify-center  '>
+                <div className='shadow rounded-xl rounded-tr-none px-16 py-10 bg-white login-block  '>
                     <h1 className='text-center text-2xl mb-4'>Log In</h1>
+
                     
                     {showAlert && (
                         <Alert severity="warning" className='mt-10 mb-10' onClose={() => setShowAlert(false)}>
-                            User doesn&#39;t exist
+                            User doesn't exist
                         </Alert>
-                    )}
+                    )}  
 
                     <div className='flex flex-col gap-3'>
                         <input
@@ -64,7 +67,7 @@ const LoginPage: React.FC = () => {
                         />
                         <input
                             type="password"
-                            className='p-2 border border-gray-300 rounded-lg outline-none text-slate-500'
+                            className='p-2 border border-gray-3x00 rounded-lg outline-none text-slate-500'
                             placeholder='Password'
                             onChange={(e) => {
                                 e.preventDefault();
@@ -73,16 +76,18 @@ const LoginPage: React.FC = () => {
                         />
                     </div>
                     <div className='flex justify-center items-center my-6'>
-                        <button className='login-block text-white rounded-lg px-4 py-2 w-full font-semibold text-lg' onClick={submitData}>Submit</button>
+                        <button className='login-block text-white rounded-lg px-4 py-2 w-full font-semibold text-lg ' onClick={submitData}>Submit</button>
                     </div>
                     <hr />
-                    <p className='my-4 text-200'>
-                        Don&#39;t have an Account? <Link href={'/register'} className='font-bold hover:underline'>Register</Link>
-                    </p>
+                    <p className='my-4 text-200  '>Don't have an Account? <Link href={'/register'} className='font-bold hover:underline'>Register</Link></p>
+
+
+
                 </div>
+
             </div>
         </div>
     )
 }
 
-export default LoginPage
+export default Login
