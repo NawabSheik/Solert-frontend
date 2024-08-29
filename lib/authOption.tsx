@@ -1,8 +1,9 @@
-import nextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { AuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn, signOut } from "next-auth/react";
 
-const authOptions = {
+const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -10,18 +11,15 @@ const authOptions = {
                 username: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials: any, req: any): Promise<any> {
-                const { email, password } = credentials;
+            async authorize(credentials) {
+                const { username, password } = credentials as { username: string; password: string };
 
-                if (!email || !password) {
+                if (!username || !password) {
                     throw new Error("All fields are required");
                 }
 
                 try {
-                    const response = await axios.post(
-                        'http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/login',
-                        { email, password }
-                    );
+                    const response = await axios.post('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/login', { email: username, password })
                     const user = response.data;
 
                     if (!user) {
@@ -57,16 +55,11 @@ const authOptions = {
     pages: {
         signIn: '/login',
         signOut: '/',
-        error: '/' // lowercase 'e' here; 'Error' should be 'error'
+        error: '/'  // Corrected from "Error" to "error"
     },
-    
-    // This is the correct type for the session option
     session: {
         strategy: "jwt"
     }
-};
+}
 
-const handler = nextAuth(authOptions);
-
-export { handler as GET, handler as POST };
 export default authOptions;
