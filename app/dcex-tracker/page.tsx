@@ -16,11 +16,12 @@ const whaleAlert = () => {
   }
 
   return (
-   
-      <div className='max-w-screen-lg mx-auto mt-10'>
-        <h1 className='text-center text-4xl font-bold my-6 text-purple-800'>Add the address you want to Track</h1>
+    
+      <div className='max-w-screen-lg mx-auto  '>
+        <h1 className='text-center text-4xl font-bold font-bold text-black pt-10'>Add the address you want to Track</h1>
         <TrackAccount />
       </div>
+      
  
   )
 }

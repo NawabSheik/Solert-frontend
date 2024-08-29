@@ -31,9 +31,7 @@ export const Login = () => {
 
     const submitData = async () => {
         try {
-
-            const response = await axios.post('http://localhost:3001/api/v1/users/register', { name, email, password })
-
+            const response = await axios.post('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/register', { name, email, password })
             console.log(response)
         } catch (error) {
             setName('');

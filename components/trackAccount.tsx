@@ -30,7 +30,7 @@ export const TrackAccount = () => {
  const fetchData = async () => {
    setLoading(true)
    try {
-     const response = await axios.get(`http://localhost:3001/api/v1/accounts/trackAddress?userId=${userId}`);
+     const response = await axios.get(`http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress?userId=${userId}`);
      setAllTrackAddress(response.data.data);
    } catch (error) {
      console.error('Error fetching tracked addresses:', error);
@@ -53,7 +53,7 @@ export const TrackAccount = () => {
 
  const updateAmount = async (id: number) => {
    try {
-     await axios.patch('http://localhost:3001/api/v1/accounts/trackAddress', { id, amount: updatedAmounts[id] });
+     await axios.patch('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress', { id, amount: updatedAmounts[id] });
      fetchData()
      // setAllTrackAddress(allTrackAddress.map(item => item.id === id ? { ...item, amount: updatedAmounts[id] } : item));
      setEditStates({ ...editStates, [id]: false });  // Disable edit mode after updating
@@ -65,7 +65,7 @@ export const TrackAccount = () => {
 
  const deleteTrackAddress = async (id: number) => {
    try {
-     await axios.delete('http://localhost:3001/api/v1/accounts/trackAddress', { data: { id } });
+     await axios.delete('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress', { data: { id } });
      setAllTrackAddress(allTrackAddress.filter(item => item.id !== id));
    } catch (error) {
      console.error('Error deleting address:', error);
@@ -77,7 +77,7 @@ export const TrackAccount = () => {
    setLoading(true)
    try {
      if (userId) {
-       const response = await axios.post(`http://localhost:3001/api/v1/accounts/trackAddress?userId=${userId}`, { address, amount });
+       const response = await axios.post(`http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress?userId=${userId}`, { address, amount });
        fetchData()
        // setAllTrackAddress([...allTrackAddress, response.data.data]);
        setAmount(0);
@@ -96,9 +96,9 @@ export const TrackAccount = () => {
 
 
  return (
-   <div className='h-[80vh]'>
-     <div className='flex gap-4 p-7 '>
-       <div className='w-2/5'>
+   <div className='h-[80vh] mb-8'>
+     <div className='flex gap-4 p-7'>
+       <div className='w-2/5 '>
          <input
            type="text"
            value={address}
@@ -116,7 +116,7 @@ export const TrackAccount = () => {
            }
            }
            placeholder="Enter Address"
-           className='border rounded-lg p-2 w-full outline-none text-slate-600'
+           className='border rounded-lg p-2 w-full outline-none text-slate-600 dcex-address-input'
          />
          {!isAddressValid && address.length > 0 && (
            <p style={{ color: 'red' }}>Invalid Solana address</p>
@@ -130,19 +130,19 @@ export const TrackAccount = () => {
            setAmount(Number(value.replace(/^0+/, '')));
          }}
          placeholder="Enter Amount"
-         className='border rounded-lg p-2 w-2/5 outline-none text-slate-600 mb-6'
+         className='border rounded-lg p-2 w-2/5 outline-none text-slate-600 mb-6 dcex-amount-input'
        />
-       <button onClick={addAccount} disabled={isAddressValid} className={`bg-black text-white py-2 px-4 rounded-lg w-1/5 ${isAddressValid ? "active:text-xl" : ""} mb-6`}>Add Account</button>
+       <button onClick={addAccount} disabled={!isAddressValid} className={`bg-black text-white py-2 px-4 rounded-lg w-1/5 ${isAddressValid ? "active:text-xl cursor-pointer" : ""} mb-6 dcex-add-button`}>Add Account</button>
      </div>
 
 
-     <div className='mt-8 h-[50vh]  p-4 shadow-xl overflow-y-scroll'>
+     <div className='mt-8 h-[50vh] overflow-y-scroll  overflow-x-hidden  p-4 shadow-xl'>
        {loading ? (<p className='text-center mt-12'>Loading...</p>) : (
          <ul>
            {allTrackAddress.length > 0 ? (
              allTrackAddress.map((item) => (
-               <li key={item.id} className='flex gap-4 text-slate-600 mb-4'>
-                 <p className='bg-gray-100 py-1 px-2 rounded-lg w-4/6'>{item.accountAddress}</p>
+               <li key={item.id} className='flex gap-4 text-slate-600 mb-4 '>
+                 <p className='bg-gray-100 py-1 px-2 rounded-lg w-4/6 dcex-account-address'>{item.accountAddress}</p>
                  <input
                    type="number"
                    value={editStates[item.id] ? updatedAmounts[item.id] : item.amount}
@@ -152,15 +152,15 @@ export const TrackAccount = () => {
                    }}
                    placeholder="Update Amount"
                    disabled={!editStates[item.id]}
-                   className='text-slate-600 border p-2 rounded-lg w-1/6 outline-none'
+                   className='text-slate-600 border p-2 rounded-lg w-1/6 outline-none dcex-update-amount'
                  />
                  <button
                    onClick={() => editStates[item.id] ? updateAmount(item.id) : toggleEditMode(item.id)}
-                   className='bg-black text-white py-2 px-4 rounded-lg w-1/6'
+                   className='bg-black text-white py-2 px-4 rounded-lg w-1/6 dcex-update-button'
                  >
                    {editStates[item.id] ? 'Update' : 'Edit Amt'}
                  </button>
-                 <button onClick={() => deleteTrackAddress(item.id)} className='bg-black text-white py-2 px-4 rounded-lg w-1/6'>Delete</button>
+                 <button onClick={() => deleteTrackAddress(item.id)} className='bg-black text-white py-2 px-4 rounded-lg w-1/6 dcex-delete-button'>Delete</button>
                </li>
 
 
@@ -183,13 +183,6 @@ const validateSolanaAddress = (inputAddress: string) => {
    return true;
  } catch (error) {
    return false;
- }
+ }
 };
-
-
-
-
-
-
-
 

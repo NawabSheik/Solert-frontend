@@ -115,5 +115,64 @@
    
 }
 
+.dcex-tracker{
+    background-color: #000;
+    width: 100%;
+}
+
+.tracker-bg{
+    background-color: #000;
+}
+
+.dcex-inputs{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
 
 
+
+@media(max-width:700px){
+    .dcex-address-input{
+        width:90vw;
+    }
+    .dcex-amount-input{
+        width:50vw;
+        margin-top:3rem;
+        margin-left: -12rem;
+    }
+
+    .dcex-add-button{
+        width:50vw;
+        margin-top:3rem;
+    }
+}
+
+@media(max-width:700px){
+    .dcex-account-address{
+        width:100vw;
+        height:3rem;
+    }
+
+    .dcex-update-amount{
+        width:30vw;
+        margin-top:4rem;
+        margin-left:-28rem;
+    }
+
+    .dcex-update-button{
+        width:30vw;
+        margin-top:4rem;
+    }
+
+    .dcex-delete-button{
+        width:30vw;
+        margin-top:4rem;
+    }
+}
+
+@media(max-width:768px){
+    .navbar{
+        font-size:1rem;
+    }
+}

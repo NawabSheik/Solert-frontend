@@ -29,22 +29,22 @@ export const Appbar = () => {
         <div className='text-lg'>
 
           {user ? (
-            <ul className='flex gap-8'>
-              <li className='nav-link capitalize'>{user.name}</li>
+            <ul className='flex gap-4'>
+              <li className='nav-link capitalize navbar'>{user.name}</li>
               <li>|</li>
-              <li className='nav-link'>
+              <li className='nav-link navbar'>
                 <button onClick={() => signOut()}>Logout</button>
               </li>
             </ul>
           )
             : (
-              <ul className='flex gap-8'>
-                <li className='nav-link'><Link href={'/register'}>SignUp</Link></li>
+              <ul className='flex gap-4'>
+                <li className='nav-link navbar'><Link href={'/register'}>SignUp</Link></li>
 
                 {/* <li><Link href={'/whaleAlert'}>Whale Dcex</Link></li> */}
                 {/* <li><Link href={'/'}>About Us</Link></li> */}
                 <li>|</li>
-                <li><Link href={'/login'}>Login</Link></li>
+                <li className='nav-link navbar'><Link href={'/login'}>Login</Link></li>
             </ul>
           )
         }
