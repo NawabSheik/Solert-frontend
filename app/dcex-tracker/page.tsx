@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { TrackAccount } from '@/components/trackAccount'
 
-const whaleAlert = () => {
+const WhaleAlert = () => {
 
   const {data} = useSession();
   const router = useRouter();
@@ -26,4 +26,4 @@ const whaleAlert = () => {
   )
 }
 
-export default whaleAlert
+export default WhaleAlert

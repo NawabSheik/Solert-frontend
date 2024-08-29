@@ -51,7 +51,7 @@ export const Login = () => {
                     
                     {showAlert && (
                         <Alert severity="warning" className='mt-10 mb-10' onClose={() => setShowAlert(false)}>
-                            User doesn't exist
+                            User doesn&#39;t exist
                         </Alert>
                     )}  
 
@@ -79,7 +79,7 @@ export const Login = () => {
                         <button className='login-block text-white rounded-lg px-4 py-2 w-full font-semibold text-lg ' onClick={submitData}>Submit</button>
                     </div>
                     <hr />
-                    <p className='my-4 text-200  '>Don't have an Account? <Link href={'/register'} className='font-bold hover:underline'>Register</Link></p>
+                    <p className='my-4 text-200  '>Don&#39;t have an Account? <Link href={'/register'} className='font-bold hover:underline'>Register</Link></p>
 
 
 
