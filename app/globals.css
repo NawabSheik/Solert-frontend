@@ -143,7 +143,7 @@
     .dcex-amount-input{
         width:90vw;
         margin-top:4rem;
-        margin-left: -10.5rem;
+        margin-left: -10rem;
         height:3rem;
         
     }
@@ -151,6 +151,8 @@
     .dcex-add-button{
         width:90vw;
         margin-top:4rem;
+        font-size:0.85rem;
+        height:3rem;
         
     }
 }
