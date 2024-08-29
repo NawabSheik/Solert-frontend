@@ -1,7 +1,7 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn, signOut } from "next-auth/react";
-import { NextAuthOptions } from "next-auth";
+import  NextAuth  from "next-auth";
 
 
 const authOptions = {
@@ -63,4 +63,4 @@ const authOptions = {
     }
 
 }
-export default authOptions;
+export default NextAuth(authOptions);
