@@ -58,7 +58,7 @@ const authOptions = {
         Error: '/'
     },
     session: {
-        jwt: true
+        strategy:"jwt"
     }
 
 }

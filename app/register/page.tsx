@@ -1,25 +1,27 @@
 'use client'
-
 import axios from 'axios'
-import { useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import Alert from '@mui/material/Alert'
+import { BsGoogle } from 'react-icons/bs'
+import Alert from '@mui/material/Alert';  
 import { Button } from '@nextui-org/react'
 
-const RegisterPage: React.FC = () => {
+export const Register : React.FC = () =>  {
     const [name, setName]  = useState<string>('') 
     const [email, setEmail]  = useState<string>('') 
     const [password, setPassword] = useState<string>('')
-    const [showAlert, setShowAlert] = useState(false)
-    const { data } = useSession()
+    const [showAlert, setShowAlert] = useState(false);
+    const { data } = useSession();
+    console.log(data, "is data")
     const [isUser, setIsUser] = useState(false)
     const router = useRouter()
 
+
     useEffect(() => {
         if (data?.user) {
-            setIsUser(true)
+            setIsUser(true);
         }
     }, [data?.user])
 
@@ -29,73 +31,82 @@ const RegisterPage: React.FC = () => {
 
     const submitData = async () => {
         try {
-            const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/users/register`,
-                { name, email, password }
-            )
+            const response = await axios.post('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/register', { name, email, password })
             console.log(response)
         } catch (error) {
-            setName('')
-            setEmail('')
-            setPassword('')
-            setShowAlert(true)
+            setName('');
+            setEmail('');
+            setPassword('');
+            setShowAlert(true);  // Show the alert
 
             setTimeout(() => {
-                setShowAlert(false)
-            }, 4000)
+                setShowAlert(false);  // Hide the alert after 4 seconds
+            }, 4000);
 
-            console.log('Error:', error)
+            console.log("Error:", error);
+
         }
     }
 
+
+
     return (
-        <div className='flex flex-col justify-center bg-black h-screen'>
+        <div className='flex flex-col justify-center  bg-black h-screen'>
             <div className='flex justify-center'>
                 <div className='shadow rounded-xl rounded-tr-none px-16 py-10 login-block'>
                     <h1 className='text-center text-2xl mb-4'>Register</h1>
 
-                    {showAlert && (
+                    {/* Conditionally render the alert */}
+
+                     {showAlert && (
                         <Alert severity="warning" className='mt-10 mb-10' onClose={() => setShowAlert(false)}>
                             User Already Exists
                         </Alert>
-                    )}
+                    )}     
 
                     <div className='flex flex-col gap-3'>
                         <input
                             type="text"
                             className='p-2 border border-gray-300 rounded-lg outline-none text-slate-500'
                             placeholder='Name'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+
+                            onChange={(e) => {
+                                e.preventDefault();
+                                setName(e.target.value);
+                            }}
                         />
                         <input
-                            type="email"
+                            type="text"
                             className='p-2 border border-gray-300 rounded-lg outline-none text-slate-500'
                             placeholder='Email'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => {
+                                e.preventDefault();
+                                setEmail(e.target.value);
+                            }}
                         />
                         <input
                             type="password"
-                            className='p-2 border text-gray-600 border-gray-300 rounded-lg outline-none'
+                            className='p-2 border text-gray-600 border-gray-3x00 rounded-lg outline-none'
                             placeholder='Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => {
+                                e.preventDefault();
+                                setPassword(e.target.value);
+                            }}
                         />
                     </div>
                     <div className='flex justify-center items-center my-6'>
-                        <Button auto onClick={submitData}>
-                            Submit
-                        </Button>
+                        <button className='login-block text-white rounded-lg px-4 py-2 w-full font-semibold text-lg  ' type='button' onClick={submitData} >Submit</button>
                     </div>
                     <hr />
-                    <p className='my-4'>
-                        Already have an Account? <Link href={'/login'} className='font-bold hover:underline'>Login</Link>
-                    </p>
+                    <p className='my-4 '>Already have an Account? <Link href={'/login'} className='font-bold hover:underline '>Login</Link></p>
+             
+                       
+
+
                 </div>
             </div>
         </div>
     )
 }
 
-export default RegisterPage
+export default Register
