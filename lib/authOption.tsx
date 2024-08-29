@@ -1,25 +1,26 @@
+
 import axios from "axios";
-import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn, signOut } from "next-auth/react";
 
-const authOptions: AuthOptions = {
+
+const authOptions = {
     providers: [
         CredentialsProvider({
             name: "credentials",
             credentials: {
-                username: { label: "Email", type: "text" },
-                password: { label: "Password", type: "password" }
+                username: { label: "Email", type: "text"},
+                password: { label: "Password", type: "password"}
             },
-            async authorize(credentials) {
-                const { username, password } = credentials as { username: string; password: string };
+            async authorize(credentials: any, req: any): Promise<any> {
+                const { email, password } = credentials;
 
-                if (!username || !password) {
+                if (!email || !password) {
                     throw new Error("All fields are required");
                 }
 
                 try {
-                    const response = await axios.post('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/login', { email: username, password })
+                    const response = await axios.post('', { email, password })
                     const user = response.data;
 
                     if (!user) {
@@ -55,11 +56,11 @@ const authOptions: AuthOptions = {
     pages: {
         signIn: '/login',
         signOut: '/',
-        error: '/'  // Corrected from "Error" to "error"
+        Error: '/'
     },
     session: {
-        strategy: "jwt"
+        jwt: true
     }
-}
 
+}
 export default authOptions;
