@@ -1,10 +1,10 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn, signOut } from "next-auth/react";
-import  NextAuth  from "next-auth";
+import  NextAuth, { AuthOptions }  from "next-auth";
 
 
-const authOptions = {
+const authOptions:AuthOptions = {
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -22,7 +22,7 @@ const authOptions = {
                 try {
                     const response = await axios.post('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/login', { email, password })
                     const user = response.data;
-
+                    console.log("user mydfda", user)
                     if (!user) {
                         throw new Error("Invalid credentials");
                     }
@@ -63,4 +63,4 @@ const authOptions = {
     }
 
 }
-export default NextAuth(authOptions);
+export default authOptions;
