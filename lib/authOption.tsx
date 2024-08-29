@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { signIn, signOut } from "next-auth/react";
@@ -20,7 +19,7 @@ const authOptions = {
                 }
 
                 try {
-                    const response = await axios.post('', { email, password })
+                    const response = await axios.post('http://localhost:3001/api/v1/users/login', { email, password })
                     const user = response.data;
 
                     if (!user) {
