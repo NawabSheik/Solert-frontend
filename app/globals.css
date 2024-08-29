@@ -128,31 +128,44 @@
     display:flex;
     align-items:center;
     justify-content: center;
+    flex-direction: row;
 }
 
 
 
 @media(max-width:700px){
+    .dcex-inputs{
+        flex-direction: column;
+    }
     .dcex-address-input{
         width:90vw;
     }
     .dcex-amount-input{
-        width:30vw;
-        margin-top:3rem;
-        margin-left: 4rem;
+        width:90vw;
+        margin-top:4rem;
+        margin-left: -10.5rem;
         height:3rem;
+        
     }
 
     .dcex-add-button{
-        width:50vw;
-        margin-top:3rem;
+        width:90vw;
+        margin-top:4rem;
+        
     }
+}
+
+.track-address-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media(max-width:700px){
     .dcex-account-address{
         width:100vw;
         height:3rem;
+        font-size:0.8rem;
     }
 
     .dcex-update-amount{
