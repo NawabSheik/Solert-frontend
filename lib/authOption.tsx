@@ -1,8 +1,27 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { SessionStrategy } from "next-auth";
+import { SessionStrategy} from "next-auth";
+import { JWT } from "next-auth/jwt";
+import { NextApiRequest } from "next";
 
+interface User {
+    userId: string;
+    userName: string;
+    email: string;
+  }
 
+  interface Token {
+    id?: string;
+    name?: string;
+  }
+
+  interface Session {
+    user: {
+      userId: string;
+      userName: string;
+      email?: string;
+    };
+  }
 
 const authOptions = {
     providers: [
@@ -36,20 +55,20 @@ const authOptions = {
     ],
 
     callbacks: {
-        async jwt({ token, user }) {
+        async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
             if (user) {
-                token.id = user.userId;
-                token.name = user.userName; 
+              token.id = user.userId;
+              token.name = user.userName;
             }
             return token;
         },
-        async session({ session, token }) {
+        async session({ session, token }: { session: Session; token: Token }): Promise<Session> {
             if (session.user) {
-                session.user.userId = token.id;
-                session.user.userName = token.name; 
+              session.user.userId = token.id || "";
+              session.user.userName = token.name || "";
             }
             return session;
-        }
+          },
     },
 
     secret: process.env.NEXTAUTH_SECRET,
