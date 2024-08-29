@@ -38,15 +38,15 @@ const authOptions:AuthOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token.id = user.userId;
-                token.name = user.userName; 
+                token.id = user.id;
+                token.name = user.name; 
             }
             return token;
         },
         async session({ session, token }) {
             if (session.user) {
-                session.user.userId = token.id;
-                session.user.userName = token.name; 
+                session.user.id = token.id;
+                session.user.name = token.name; 
             }
             return session;
         }
