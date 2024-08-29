@@ -32,7 +32,7 @@ const Login : React.FC = () =>  {
     const submitData = async () => {
         try {
             const response = await signIn("credentials", { email, password })
-
+            console.log("Submitting data");
             console.log(response)
         } catch (error) {
             console.log("error is this", error)
