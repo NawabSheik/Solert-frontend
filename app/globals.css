@@ -137,14 +137,14 @@
         width:90vw;
     }
     .dcex-amount-input{
-        width:42vw;
+        width:30vw;
         margin-top:3rem;
-        margin-left: 0rem;
+        margin-left: -4rem;
         height:3rem;
     }
 
     .dcex-add-button{
-        width:58vw;
+        width:50vw;
         margin-top:3rem;
     }
 }
