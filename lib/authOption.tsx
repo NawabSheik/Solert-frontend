@@ -1,7 +1,7 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signIn, signOut } from "next-auth/react";
-import  NextAuth  from "next-auth";
+import { SessionStrategy } from "next-auth";
+
 
 
 const authOptions = {
@@ -59,8 +59,9 @@ const authOptions = {
         error: '/'
     },
     session: {
-        strategy:"jwt"
+        strategy: "jwt" as SessionStrategy,
     }
 
 }
-export default NextAuth(authOptions);
+
+export default authOptions;
