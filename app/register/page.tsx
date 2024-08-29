@@ -8,7 +8,8 @@ import { BsGoogle } from 'react-icons/bs'
 import Alert from '@mui/material/Alert';  
 import { Button } from '@nextui-org/react'
 
-export const Register : React.FC = () =>  {
+
+const Register : React.FC = () =>  {
     const [name, setName]  = useState<string>('') 
     const [email, setEmail]  = useState<string>('') 
     const [password, setPassword] = useState<string>('')
