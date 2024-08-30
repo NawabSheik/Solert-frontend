@@ -32,7 +32,7 @@ const Register : React.FC = () =>  {
 
     const submitData = async () => {
         try {
-            const response = await axios.post('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/register', { name, email, password })
+            const response = await axios.post('https://solert.mach-india.com/api/v1/users/register', { name, email, password })
             console.log(response)
             router.push('/login')
         } catch (error) {

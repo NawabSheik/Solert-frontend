@@ -29,7 +29,7 @@ export const TrackAccount = () => {
   const fetchData = async () => {
     setLoading(true)
     try {
-      const response = await axios.get(`http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress?userId=${userId}`);
+      const response = await axios.get(`https://solert.mach-india.com/api/v1/accounts/trackAddress?userId=${userId}`);
       setAllTrackAddress(response.data.data);
     } catch (error) {
       console.error('Error fetching tracked addresses:', error);
@@ -52,7 +52,7 @@ export const TrackAccount = () => {
 
   const updateAmount = async (id: number) => {
     try {
-      await axios.patch('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress', { id, amount: updatedAmounts[id] });
+      await axios.patch('https://solert.mach-india.com/api/v1/accounts/trackAddress', { id, amount: updatedAmounts[id] });
       fetchData()
       // setAllTrackAddress(allTrackAddress.map(item => item.id === id ? { ...item, amount: updatedAmounts[id] } : item));
       setEditStates({ ...editStates, [id]: false });  // Disable edit mode after updating
@@ -64,7 +64,7 @@ export const TrackAccount = () => {
 
   const deleteTrackAddress = async (id: number) => {
     try {
-      await axios.delete('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress', { data: { id } });
+      await axios.delete('https://solert.mach-india.com/api/v1/accounts/trackAddress', { data: { id } });
       setAllTrackAddress(allTrackAddress.filter(item => item.id !== id));
     } catch (error) {
       console.error('Error deleting address:', error);
@@ -76,7 +76,7 @@ export const TrackAccount = () => {
     setLoading(true)
     try {
       if (userId) {
-        const response = await axios.post(`http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/accounts/trackAddress?userId=${userId}`, { address, amount });
+        const response = await axios.post(`https://solert.mach-india.com/api/v1/accounts/trackAddress?userId=${userId}`, { address, amount });
         fetchData()
         // setAllTrackAddress([...allTrackAddress, response.data.data]);
         setAmount(0);
