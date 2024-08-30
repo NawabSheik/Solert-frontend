@@ -140,6 +140,10 @@
     justify-content: center;
 }
 
+.dcex-delete-button{
+    color:#fff;
+}
+
 
 @media(max-width:768px){
     .dcex-account-address{

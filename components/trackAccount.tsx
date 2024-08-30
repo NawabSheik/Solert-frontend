@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import { PublicKey } from '@solana/web3.js';
 import { useRouter } from 'next/navigation';
+import { FaTrashAlt } from "react-icons/fa";
 
 
 export const TrackAccount = () => {
@@ -31,6 +32,7 @@ export const TrackAccount = () => {
     try {
       const response = await axios.get(`https://solert.mach-india.com/api/v1/accounts/trackAddress?userId=${userId}`);
       setAllTrackAddress(response.data.data);
+
     } catch (error) {
       console.error('Error fetching tracked addresses:', error);
     } finally {
@@ -114,7 +116,7 @@ export const TrackAccount = () => {
               }
             }
             }
-            placeholder="Enter Address"
+            placeholder="Enter SOL Address"
             className='border rounded-lg p-2 w-full outline-none text-slate-600 dcex-address-input'
           />
           {!isAddressValid && address.length > 0 && (
@@ -159,7 +161,7 @@ export const TrackAccount = () => {
                   >
                     {editStates[item.id] ? 'Update' : 'Edit'}
                   </button>
-                  <button onClick={() => deleteTrackAddress(item.id)} className='bg-black text-white py-2 px-1 rounded-lg w-1/12 dcex-delete-button'>-</button>
+                  <button onClick={() => deleteTrackAddress(item.id)} className='bg-black text-white py-2 px-1 rounded-lg w-1/12 dcex-delete-button'><FaTrashAlt /></button>
                 </li>
 
 

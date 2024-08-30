@@ -44,6 +44,7 @@ const Register : React.FC = () =>  {
             setTimeout(() => {
                 setShowAlert(false);  // Hide the alert after 4 seconds
             }, 4000);
+            router.push('/')
 
             console.log("Error:", error);
 
