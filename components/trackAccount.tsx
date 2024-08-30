@@ -131,7 +131,7 @@ export const TrackAccount = () => {
           placeholder="Enter Amount"
           className='border rounded-lg p-2 w-2/5 outline-none text-slate-600 mb-6 dcex-amount-input'
         />
-        <button onClick={addAccount} disabled={!isAddressValid} className={`bg-black text-white py-2 px-4 rounded-lg w-1/5 ${isAddressValid ? "active:text-xl cursor-pointer" : ""} mb-6 dcex-add-button`}>Add Account</button>
+        <button onClick={addAccount} disabled={!isAddressValid} className={`bg-black text-white py-2 px-4 rounded-lg w-1/5 ${isAddressValid ? "active:text-xl cursor-pointer" : ""} mb-6 dcex-add-button`}>Add</button>
       </div>
 
 
@@ -140,8 +140,8 @@ export const TrackAccount = () => {
           <ul>
             {allTrackAddress.length > 0 ? (
               allTrackAddress.map((item) => (
-                <li key={item.id} className='flex gap-4 text-slate-600 mb-4 '>
-                  <p className='bg-gray-100 py-1 px-2 rounded-lg w-4/6 dcex-account-address'>{item.accountAddress}</p>
+                <li key={item.id} className='flex gap-4 text-slate-600 mb-4  '>
+                  <p className='bg-gray-100 py-1 px-2 rounded-lg w-8/12 dcex-account-address'>{item.accountAddress}</p>
                   <input
                     type="number"
                     value={editStates[item.id] ? updatedAmounts[item.id] : item.amount}
@@ -149,17 +149,17 @@ export const TrackAccount = () => {
                       const value = e.target.value;
                       setUpdatedAmounts({ ...updatedAmounts, [item.id]: Number(value.replace(/^0+/, '')) });
                     }}
-                    placeholder="Update Amount"
+                    placeholder="Update"
                     disabled={!editStates[item.id]}
-                    className='text-slate-600 border p-2 rounded-lg w-1/6 outline-none dcex-update-amount'
+                    className='text-slate-600 border py-2 px-1 rounded-lg w-2/12 outline-none dcex-update-amount'
                   />
                   <button
                     onClick={() => editStates[item.id] ? updateAmount(item.id) : toggleEditMode(item.id)}
-                    className='bg-black text-white py-2 px-4 rounded-lg w-1/6 dcex-update-button'
+                    className='bg-black text-white py-2 px-2 rounded-lg w-1/12 dcex-update-button'
                   >
-                    {editStates[item.id] ? 'Update' : 'Edit Amt'}
+                    {editStates[item.id] ? 'Update' : 'Edit'}
                   </button>
-                  <button onClick={() => deleteTrackAddress(item.id)} className='bg-black text-white py-2 px-4 rounded-lg w-1/6 dcex-delete-button'>Delete</button>
+                  <button onClick={() => deleteTrackAddress(item.id)} className='bg-black text-white py-2 px-1 rounded-lg w-1/12 dcex-delete-button'>-</button>
                 </li>
 
 

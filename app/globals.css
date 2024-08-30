@@ -133,29 +133,6 @@
 
 
 
-@media(max-width:700px){
-    .dcex-inputs{
-        flex-direction: column;
-    }
-    .dcex-address-input{
-        width:90vw;
-    }
-    .dcex-amount-input{
-        width:90vw;
-        margin-top:4rem;
-        margin-left: -10rem;
-        height:3rem;
-        
-    }
-
-    .dcex-add-button{
-        width:90vw;
-        margin-top:4rem;
-        font-size:0.85rem;
-        height:3rem;
-        
-    }
-}
 
 .track-address-container{
     display:flex;
@@ -163,29 +140,24 @@
     justify-content: center;
 }
 
-@media(max-width:700px){
+
+@media(max-width:768px){
     .dcex-account-address{
-        width:100vw;
-        height:3rem;
-        font-size:0.8rem;
+        font-size:0.55rem;
+        word-wrap: break-word;
+
     }
 
     .dcex-update-amount{
-        width:30vw;
-        margin-top:4rem;
-        margin-left:-28rem;
+        font-size:0.55rem;
     }
 
     .dcex-update-button{
-        width:30vw;
-        margin-top:4rem;
-    }
-
-    .dcex-delete-button{
-        width:30vw;
-        margin-top:4rem;
+        font-size:0.55rem;
     }
 }
+
+
 
 @media(max-width:768px){
     .navbar{

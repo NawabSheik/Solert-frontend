@@ -34,6 +34,7 @@ const Register : React.FC = () =>  {
         try {
             const response = await axios.post('http://ec2-43-205-127-140.ap-south-1.compute.amazonaws.com/api/v1/users/register', { name, email, password })
             console.log(response)
+            router.push('/login')
         } catch (error) {
             setName('');
             setEmail('');
